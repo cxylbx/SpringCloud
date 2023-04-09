@@ -1,0 +1,45 @@
+# 端口
+server:
+  port: 9001
+
+# eureka服务
+eureka:
+  client:
+    # true标识注册中心注册自己
+    register-with-eureka: true
+    # true标识自己就是客户端，需要检索服务
+    fetch-registry: true
+    # 设置与eureka server交互的地址查询服务和注册服务都需要这个地址
+    service-url:
+      defaultZone: http://localhost:8080/eureka
+  # 简略名称
+  instance:
+    instance-id: order9001
+    # 访问地址可以显示ip地址
+    prefer-ip-address: true
+    # eureka在收到最后一次心跳检验之后等待的时间上限(默认时90s)
+    lease-expiration-duration-in-seconds: 90
+    # eureka客户端向服务端发送心跳的时间间隔(默认30s)
+    lease-renewal-interval-in-seconds: 30
+
+feign:
+  circuitbreaker:
+    #开启熔断机制
+    enabled: true
+  client:
+    config:
+      default:
+        # 指的是建立连接所用的时间，适用于网络状态正常的情况下，两端连接所用的时间
+        ConnectTimeOut: 5000
+        # 指的是建立连接后从服务器读取可用资源所用的时间
+        ReadTimeOut: 5000
+
+logging:
+  level:
+    # Feign打印接口日志
+    springcloud.service: debug
+
+# spring配置
+spring:
+  application:
+    name: cloud-order

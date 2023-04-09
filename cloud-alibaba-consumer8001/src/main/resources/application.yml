@@ -1,0 +1,20 @@
+server:
+  port: 8001
+
+# 服务监控暴露端口
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+spring:
+  application:
+    name: alibaba-consumer
+  cloud:
+    nacos:
+      discovery:
+        # nacos注册地址
+        server-addr: 1.116.128.254:8848
+        username: nacos
+        password: nacos

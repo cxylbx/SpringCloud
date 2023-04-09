@@ -1,0 +1,21 @@
+# 端口
+server:
+  port: 8080
+
+# eureka服务
+eureka:
+  instance:
+    # eureka服务端的实例名称
+    hostname: localhost
+  client:
+    # false标识不想注册中心注册自己
+    register-with-eureka: false
+    # false标识自己段就是注册中心，并不需要检索服务
+    fetch-registry: false
+    # 设置与eureka server交互的地址查询服务和注册服务都需要这个地址
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+  server:
+    #关闭自我保护机制,服务不可用时剔除
+    enable-self-preservation: false
+    eviction-interval-timer-in-ms: 20000

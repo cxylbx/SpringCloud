@@ -1,0 +1,26 @@
+server:
+  port: 3377
+
+spring:
+  application:
+    name: nacos-client
+  profiles:
+    active: dev
+  cloud:
+    nacos:
+      # nacos注册地址
+      discovery:
+        server-addr: 1.116.128.254:8848
+        username: nacos
+        password: nacos
+      # nacos配置中心
+      config:
+        server-addr: 1.116.128.254:8848
+        username: nacos
+        password: nacos
+        # 指定yaml格式的配置
+        file-extension: yaml
+        # 对应命名空间
+        namespace: fc1e8b6e-f04e-43e2-b39d-3254e528f346
+        # 分组
+        group: DEFAULT_GROUP

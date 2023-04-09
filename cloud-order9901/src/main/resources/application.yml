@@ -1,0 +1,48 @@
+# 端口
+server:
+  port: 9901
+
+# eureka服务
+eureka:
+  client:
+    # true标识注册中心注册自己
+    register-with-eureka: true
+    # true标识自己就是客户端，需要检索服务
+    fetch-registry: true
+    # 设置与eureka server交互的地址查询服务和注册服务都需要这个地址
+    service-url:
+      defaultZone: http://localhost:8080/eureka
+  # 简略名称
+  instance:
+    instance-id: order-9901
+    # 访问地址可以显示ip地址
+    prefer-ip-address: true
+    # eureka在收到最后一次心跳检验之后等待的时间上限(默认时90s)
+    lease-expiration-duration-in-seconds: 90
+    # eureka客户端向服务端发送心跳的时间间隔(默认30s)
+    lease-renewal-interval-in-seconds: 30
+
+# spring配置
+spring:
+  application:
+    name: cloud-order
+  cloud:
+    function:
+      # 定义消费者，多个用分号分隔，当存在大于1个的消费者时，不定义不会生效
+      definition: test
+    stream:
+      binders: # 在此处配置要绑定的rabbitmq的服务信息；
+        defaultRabbit: # 表示定义的名称，用于于binding整合
+          type: rabbit # 消息组件类型
+          environment: # 设置rabbitmq的相关的环境配置
+            spring:
+              rabbitmq:
+                host: 1.116.128.254
+                port: 5672
+                username: admin
+                password: admin
+      bindings: # 服务的整合处理
+        test-in-0: # 这个名字是一个通道的名称  3.1版本之后变成[函数对象]-in-0
+          destination: studyExchange # 表示要使用的Exchange名称定义
+          content-type: application/json # 设置消息类型，如果是文本则设置“text/plain”
+          binder: defaultRabbit # 设置要绑定的消息服务的具体设置

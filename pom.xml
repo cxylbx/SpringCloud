@@ -89,6 +89,7 @@
         <module>cloud-alibaba-payment9002</module>
         <module>cloud-alibaba-consumer8001</module>
         <module>cloud-alibaba-client3377</module>
+        <module>cloud-alibaba-sentinel8401</module>
     </modules>
 
     <build>

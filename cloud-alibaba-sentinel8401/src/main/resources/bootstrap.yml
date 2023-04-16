@@ -14,10 +14,10 @@ spring:
     # sentinel注册地址
     sentinel:
       transport:
-        dashboard: 1.116.128.254:8080
-        clientIp: 115.216.48.196
+        dashboard: 192.168.2.6:8080
         # 默认8719，假如被占用会自动从8719开始依次+1扫描。直至找到未被占用的端口
         port: 8719
+        clientIp: 192.168.2.6
 
 # 服务监控暴露端口
 management:

@@ -9,15 +9,34 @@ spring:
       # nacos注册地址
       discovery:
         server-addr: 1.116.128.254:8848
+        namespace: fc1e8b6e-f04e-43e2-b39d-3254e528f346
         username: nacos
         password: nacos
     # sentinel注册地址
     sentinel:
       transport:
         dashboard: 192.168.2.6:8080
+        clientIp: 192.168.2.6
         # 默认8719，假如被占用会自动从8719开始依次+1扫描。直至找到未被占用的端口
         port: 8719
-        clientIp: 192.168.2.6
+      datasource:
+        flow-rules: # 这个名字任意起
+          nacos:
+            server-addr: 1.116.128.254:8848
+            namespace: fc1e8b6e-f04e-43e2-b39d-3254e528f346
+            groupId: DEFAULT_GROUP
+            data-id: ${spring.application.name}-flow-rules  # 和 nacos中保持对应
+            username: nacos
+            password: nacos
+            # 规则类型：流控
+            rule-type: flow
+            # 对于 nacos 数据类型
+            data-type: json
+
+# 开启sentinel对feign的支持
+feign:
+  sentinel:
+    enabled: true
 
 # 服务监控暴露端口
 management:

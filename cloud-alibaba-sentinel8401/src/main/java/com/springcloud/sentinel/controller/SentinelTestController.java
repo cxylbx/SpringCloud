@@ -2,9 +2,12 @@ package com.springcloud.sentinel.controller;
 
 import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.alibaba.csp.sentinel.slots.block.BlockException;
+import com.springcloud.sentinel.service.SentinelTestService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.annotation.Resource;
 
 /**
  * @author 刘宝星
@@ -12,6 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 public class SentinelTestController {
+
+    @Resource
+    private SentinelTestService sentinelTestService;
 
     @GetMapping("/test01")
     @SentinelResource(value = "test01", blockHandler = "exception")
@@ -27,5 +33,10 @@ public class SentinelTestController {
     @SentinelResource(value = "test02")
     public String test02(){
         return "test02";
+    }
+
+    @GetMapping("/test03")
+    public String test03(){
+        return sentinelTestService.test01();
     }
 }

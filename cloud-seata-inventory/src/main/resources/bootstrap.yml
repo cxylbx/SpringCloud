@@ -1,0 +1,56 @@
+server:
+  port: 9001
+
+spring:
+  application:
+    name: seata-inventory
+  profiles:
+    active: druid
+  cloud:
+    nacos:
+      # nacos注册地址
+      discovery:
+        server-addr: 1.116.128.254:8848
+        namespace:
+        group: SEATA_GROUP
+        username: nacos
+        password: nacos
+
+# seata
+seata:
+  config:
+    type: nacos
+    nacos:
+      server-addr: 1.116.128.254:8848
+      namespace:
+      group: SEATA_GROUP
+      username: nacos
+      password: nacos
+  registry:
+    type: nacos
+    nacos:
+      application: seata-server
+      server-addr: 1.116.128.254:8848
+      namespace:
+      group: SEATA_GROUP
+      username: nacos
+      password: nacos
+  tx-service-group: default_tx_group # 事务分组名称，要和服务端对应
+  service:
+    vgroup-mapping:
+      default_tx_group: default
+    disable-global-transaction: false
+    grouplist:
+      default: 127.0.0.1:8719
+
+# 开启feign
+feign:
+  hystrix:
+    enabled: true
+
+# 服务监控暴露端口
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'

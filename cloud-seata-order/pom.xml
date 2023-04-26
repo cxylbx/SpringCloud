@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>cloud-alibaba-sentinel8401</artifactId>
+    <artifactId>cloud-seata-order</artifactId>
 
     <dependencies>
 
@@ -23,18 +23,6 @@
                     <artifactId>spring-cloud-starter-netflix-ribbon</artifactId>
                 </exclusion>
             </exclusions>
-        </dependency>
-
-        <!--sentinel启动器-->
-        <dependency>
-            <groupId>com.alibaba.cloud</groupId>
-            <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
-        </dependency>
-
-        <!-- sentinel持久化到nacos -->
-        <dependency>
-            <groupId>com.alibaba.csp</groupId>
-            <artifactId>sentinel-datasource-nacos</artifactId>
         </dependency>
 
         <!-- Feign客户端 -->
@@ -55,6 +43,12 @@
             <artifactId>spring-cloud-loadbalancer</artifactId>
         </dependency>
 
+        <!-- seata依赖 -->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-seata</artifactId>
+        </dependency>
+
         <!--bootstrap 启动器-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
@@ -71,6 +65,13 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
+        <!-- 自定义工具包 -->
+        <dependency>
+            <groupId>com.cxylbx.springcloud</groupId>
+            <artifactId>cloud-api-commons</artifactId>
+            <version>${project.version}</version>
         </dependency>
 
     </dependencies>

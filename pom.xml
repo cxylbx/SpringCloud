@@ -18,6 +18,10 @@
         <fastjson.version>1.2.83</fastjson.version>
         <lomok.version>1.18.24</lomok.version>
         <hutool.version>5.8.12</hutool.version>
+        <dynamic.version>3.3.2</dynamic.version>
+        <mysql.version>8.0.18</mysql.version>
+        <mybatis-spring-boot.version>2.2.2</mybatis-spring-boot.version>
+        <druid.version>1.2.11</druid.version>
     </properties>
 
     <!-- 依赖声明 -->
@@ -72,6 +76,34 @@
                 <version>${hutool.version}</version>
             </dependency>
 
+            <!-- 阿里数据库连接池 -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid-spring-boot-starter</artifactId>
+                <version>${druid.version}</version>
+            </dependency>
+
+            <!-- SpringBoot集成mybatis框架 -->
+            <dependency>
+                <groupId>org.mybatis.spring.boot</groupId>
+                <artifactId>mybatis-spring-boot-starter</artifactId>
+                <version>${mybatis-spring-boot.version}</version>
+            </dependency>
+
+            <!-- Mysql驱动包 -->
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql.version}</version>
+            </dependency>
+
+            <!-- 多数据源配置 -->
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>dynamic-datasource-spring-boot-starter</artifactId>
+                <version>${dynamic.version}</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 
@@ -90,6 +122,9 @@
         <module>cloud-alibaba-consumer8001</module>
         <module>cloud-alibaba-client3377</module>
         <module>cloud-alibaba-sentinel8401</module>
+        <module>cloud-seata-order</module>
+        <module>cloud-seata-inventory</module>
+        <module>cloud-seata-account</module>
     </modules>
 
     <build>
